@@ -1,7 +1,7 @@
 import { Text,View,TextInput,StyleSheet,Pressable } from "react-native";
 import { useState,useEffect } from 'react';
 import axios from 'axios';
-
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
 
@@ -67,12 +67,13 @@ export default function mainApp(){
   return(
     
     <View style ={styles.container} >
+      <Text style={styles.mainTxtCity}>Weather</Text>
       <View style={styles.centeredContent}>
       
-      
-      
+      <View style={styles.searchContainer}>
+      <Icon name="search" size={24} color="#000" style={styles.searchIcon} />
       <TextInput style={styles.SearchBar} value={search} onChangeText={text => setSearch(text)} placeholder="Enter location" onSubmitEditing={handleSearch}/>
-      
+      </View>
     
     {error ? (
         <Text style={styles.errorText}>{error}</Text> // Display error message
@@ -97,31 +98,22 @@ export default function mainApp(){
 
 const styles = StyleSheet.create({
     container: {
-      paddingTop: 100,
+      paddingTop: 70,
+      paddingLeft:10,
+      paddingRight:10,
       backgroundColor: 'white',
       flex: 1, 
       
     },
     SearchBar: {
+      flex: 1,
       height: 45,
-      width: 330,
       borderRadius: 25,
       backgroundColor: '#F0F0F0',
       padding: 10,
-      marginBottom: 50,
+      
     },
-    srchBtn:{
-    marginTop: 10,
-    marginBottom: 10,
-    width: 330,
-      alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: 'black',
-    },
+    
     text: {
       fontSize: 16,
       lineHeight: 21,
@@ -142,14 +134,26 @@ const styles = StyleSheet.create({
       fontSize: 35,
     },
     mainTxtTemp:{
-      marginTop:30,
+      
       fontSize: 100,
     
     },
     mainTxtOther:{
       fontSize: 15,
     },
-    
+    searchIcon: {
+      marginLeft: 10,
+    },
+    searchContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      width: 350,
+      borderRadius: 25,
+      backgroundColor: '#F0F0F0',
+      height: 45,
+      marginBottom: 60,
+      marginTop: 15,
+    },
 
 
 });
