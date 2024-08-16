@@ -65,59 +65,55 @@ export default function mainApp(){
 
   const roundUpTemp = (temp) => Math.ceil(temp);
   return(
+    
     <View style ={styles.container} >
       <View style={styles.centeredContent}>
-      {addis && addis.main ? ( 
-        <View style={styles.centeredContent}>
-          <Text style={styles.mainTxtCity}>{addis.name}</Text>
-          <Text style={styles.mainTxtTemp}>{roundUpTemp(addis.main.temp)}°</Text>
-          
-          <Text>{addis.weather[0].description} {roundUpTemp(addis.main.temp_min)}° / {roundUpTemp(addis.main.temp_max)}°  </Text>
-        </View>
-      ) : (
-        <Text>No data available</Text>
-      )}
-      </View>
-      <TextInput style={styles.SearchBar} value={search} onChangeText={text => setSearch(text)}/>
-      <Pressable style={styles.srchBtn} onPress={handleSearch} >
-        <Text style={styles.text}>SEARCH</Text>
-      </Pressable>
-    <Text>Helloo</Text>
+      
+      
+      
+      <TextInput style={styles.SearchBar} value={search} onChangeText={text => setSearch(text)} placeholder="Enter location" onSubmitEditing={handleSearch}/>
+      
+    
     {error ? (
         <Text style={styles.errorText}>{error}</Text> // Display error message
       ) : (
-        <View>
+        <View style={styles.centeredContent}>
           {result && result.main ? (
-            <View>
-              <Text>City: {result.name}</Text>
-              <Text>Temperature: {roundUpTemp(result.main.temp)}°C</Text>
-              
-              <Text>Weather: {result.weather[0].description} {roundUpTemp(result.main.temp_min)}° / {roundUpTemp(result.main.temp_max)}° </Text>
+            <View style={styles.centeredContent}>
+              <Text style={styles.mainTxtCity}>{result.name}</Text>
+              <Text style={styles.mainTxtTemp}>{roundUpTemp(result.main.temp)}°</Text>
+              <Text style={styles.mainTxtOther}>{roundUpTemp(result.main.temp_min)}° / {roundUpTemp(result.main.temp_max)}° </Text>
+              <Text style={styles.mainTxtOther}>{result.weather[0].description} </Text>
             </View>
           ) : null
         }
         </View>
+        
       )}
-    
+    </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
     container: {
-      marginTop: 100,
-      margin: 32,
+      paddingTop: 100,
+      backgroundColor: 'white',
       flex: 1, 
-    
+      
     },
     SearchBar: {
-      height: 55,
-      borderRadius: 15,
-      backgroundColor: 'white',
+      height: 45,
+      width: 330,
+      borderRadius: 25,
+      backgroundColor: '#F0F0F0',
       padding: 10,
+      marginBottom: 50,
     },
     srchBtn:{
     marginTop: 10,
+    marginBottom: 10,
+    width: 330,
       alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 12,
@@ -138,6 +134,7 @@ const styles = StyleSheet.create({
       fontSize: 16,
     },
     centeredContent: {
+    
     alignItems: 'center', 
     marginBottom:20,
     },
@@ -147,7 +144,10 @@ const styles = StyleSheet.create({
     mainTxtTemp:{
       marginTop:30,
       fontSize: 100,
-      fontWeight: 'bold',
+    
+    },
+    mainTxtOther:{
+      fontSize: 15,
     },
     
 
