@@ -2,13 +2,13 @@ import { Text,View,TextInput,StyleSheet,Pressable,Image,ImageBackground} from "r
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import back from '../../assets/images/bg.jpg'
-import cloudy from '../../assets/images/cloudy.png'; 
-import drizzle from '../../assets/images/drizzle.png'; 
-import rain from '../../assets/images/rain.png'; 
-import snow from '../../assets/images/snow.png'; 
-import storm from '../../assets/images/storm.png'; 
-import sun from '../../assets/images/sun.png'; 
+import back from '../assets/images/bg.jpg'
+import cloudy from '../assets/images/cloudy.png'; 
+import drizzle from '../assets/images/drizzle.png'; 
+import rain from '../assets/images/rain.png'; 
+import snow from '../assets/images/snow.png'; 
+import storm from '../assets/images/storm.png'; 
+import sun from '../assets/images/sun.png'; 
 
 
 
