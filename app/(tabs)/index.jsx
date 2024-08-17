@@ -1,7 +1,14 @@
-import { Text,View,TextInput,StyleSheet,Pressable } from "react-native";
+import { Text,View,TextInput,StyleSheet,Pressable,Image,ImageBackground} from "react-native";
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import back from '../../assets/images/bg.jpg'
+import cloudy from '../../assets/images/cloudy.png'; 
+import drizzle from '../../assets/images/drizzle.png'; 
+import rain from '../../assets/images/rain.png'; 
+import snow from '../../assets/images/snow.png'; 
+import storm from '../../assets/images/storm.png'; 
+import sun from '../../assets/images/sun.png'; 
 
 
 
@@ -47,6 +54,24 @@ export default function mainApp(){
     defWeather();
   }, []);
 
+  const weatherImage = () => {
+    if (result.weather[0].main === 'Clouds'){
+      return <Image source={cloudy} style={styles.weatherImg}/>
+    } else if (result.weather[0].main === 'Thunderstorm'){
+      return <Image source={storm} style={styles.weatherImg}/>
+    } else if (result.weather[0].main === 'Drizzle'){
+      return <Image source={drizzle} style={styles.weatherImg}/>
+    } else if (result.weather[0].main === 'Rain'){
+      return <Image source={rain} style={styles.weatherImg}/>
+    } else if (result.weather[0].main === 'Snow'){
+      return <Image source={snow} style={styles.weatherImg}/>
+    } else if (result.weather[0].main === 'Clear'){
+      return <Image source={sun} style={styles.weatherImg}/>
+    } else if (result.weather[0].main === 'Atmosphere'){
+      return <Image source={sun} style={styles.weatherImg}/>
+    }
+  }
+
   const defWeather = () => {
     if (ad !== '') {
       axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${ad}&appid=b1fd6e14799699504191b6bdbcadfc35&units=metric`)
@@ -67,6 +92,7 @@ export default function mainApp(){
   return(
     
     <View style ={styles.container} >
+      
       <Text style={styles.mainTxtCity}>Weather</Text>
       <View style={styles.centeredContent}>
       
@@ -81,7 +107,9 @@ export default function mainApp(){
         <View style={styles.centeredContent}>
           {result && result.main ? (
             <View style={styles.centeredContent}>
+            
               <Text style={styles.mainTxtCity}>{result.name}</Text>
+              <View>{weatherImage()}</View>
               <Text style={styles.mainTxtTemp}>{roundUpTemp(result.main.temp)}°</Text>
               <Text style={styles.mainTxtOther}>{roundUpTemp(result.main.temp_min)}° / {roundUpTemp(result.main.temp_max)}° </Text>
               <Text style={styles.mainTxtOther}>{result.weather[0].description} </Text>
@@ -92,6 +120,7 @@ export default function mainApp(){
         
       )}
     </View>
+    
     </View>
   )
 }
@@ -154,6 +183,13 @@ const styles = StyleSheet.create({
       marginBottom: 60,
       marginTop: 15,
     },
+    weatherImg: {
+      height: 200,
+      width: 200,
+    },
+    back: {
+      flex: 1,
+    }
 
 
 });
